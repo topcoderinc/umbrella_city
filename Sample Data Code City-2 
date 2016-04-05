@@ -1,0 +1,179 @@
+String cityId = 'a0136000001ksUj';
+        
+for(Integer i=0; i< 6; i++) {
+
+    CB_Quadrant__c quadrant = new CB_Quadrant__c();
+    quadrant.CB_Quadrant_Name__c = 'Quadrant'+i+' in City1';
+    quadrant.CB_City__c = cityId;
+    quadrant.CB_Sequence__c = i;
+    insert quadrant;
+
+    //-----------------	        
+    integer j=0;
+    //for(Integer j=0; j < 4; j++) {
+    CB_Block__c block = new CB_Block__c();
+    block.CB_Block_Name__c = 'Block0-'+i+'-'+j;
+    block.CB_Sequence__c = j;
+    block.CB_Quadrant__c = quadrant.Id;
+    block.CB_Cost__c = 4000;
+    insert block;
+
+    CB_Story__c story = new CB_Story__c();
+    story.CB_Story_Text__c = 'Which statements are true about Master-Detail relationships';
+    story.CB_Solution_Data_Type__c = 'Radio';
+    story.CB_Block__c = block.Id;
+    insert story;
+
+    CB_Solution_Option__c option1 = new CB_Solution_Option__c();
+    option1.CB_Story__c = story.Id;
+    option1.CB_Sequence__c = 0;
+    option1.CB_Solution_Text__c = 'Access to parent determines access to children';
+    option1.CB_Solution_Selection_Description__c = 'Access to parent determines access to children';
+    option1.CB_Reward__c = 15000;
+    option1.CB_Score__c = 'Best';
+    insert option1;
+
+    CB_Solution_Option__c option2 = new CB_Solution_Option__c();
+    option2.CB_Story__c = story.Id;
+    option2.CB_Sequence__c = 1;
+    option2.CB_Solution_Text__c = 'Up to 25 allowed per object';
+    option2.CB_Solution_Selection_Description__c = 'Up to 25 allowed per object';
+    option2.CB_Reward__c = 0;
+    option2.CB_Score__c = 'OK';
+    insert option2;
+
+    CB_Solution_Option__c option3 = new CB_Solution_Option__c();
+    option3.CB_Story__c = story.Id;
+    option3.CB_Sequence__c = 2;
+    option3.CB_Solution_Text__c = 'Can be multiple layers deep';
+    option3.CB_Solution_Selection_Description__c = 'Can be multiple layers deep';
+    option3.CB_Reward__c = -5000;
+    option3.CB_Score__c = 'Bad';
+    insert option3;
+
+    //--------
+    j=1;
+    block = new CB_Block__c();
+    block.CB_Block_Name__c = 'Block0-'+i+'-'+j;
+    block.CB_Sequence__c = j;
+    block.CB_Quadrant__c = quadrant.Id;
+    block.CB_Cost__c = 5000;
+    insert block;
+
+    story = new CB_Story__c();
+    story.CB_Story_Text__c = 'Custom objects on the “detail” side of a master-detail relationship cannot have sharing rules.';
+    story.CB_Solution_Data_Type__c = 'Radio';
+    story.CB_Block__c = block.Id;
+    insert story;
+
+    option1 = new CB_Solution_Option__c();
+    option1.CB_Story__c = story.Id;
+    option1.CB_Sequence__c = 0;
+    option1.CB_Solution_Text__c = 'false';
+    option1.CB_Solution_Selection_Description__c = 'false';
+    option1.CB_Reward__c = 15000;
+    option1.CB_Score__c = 'Best';
+    insert option1;
+
+    option2 = new CB_Solution_Option__c();
+    option2.CB_Story__c = story.Id;
+    option2.CB_Sequence__c = 1;
+    option2.CB_Solution_Text__c = 'true';
+    option2.CB_Solution_Selection_Description__c = 'None';
+    option2.CB_Reward__c = 0;
+    option2.CB_Score__c = 'OK';
+    insert option2;
+
+    option3 = new CB_Solution_Option__c();
+    option3.CB_Story__c = story.Id;
+    option3.CB_Sequence__c = 2;
+    option3.CB_Solution_Text__c = 'true';
+    option3.CB_Solution_Selection_Description__c = 'true';
+    option3.CB_Reward__c = -6000;
+    option3.CB_Score__c = 'Bad';
+        insert option3;
+
+    //--------
+    j=2;
+    block = new CB_Block__c();
+    block.CB_Block_Name__c = 'Block0-'+i+'-'+j;
+    block.CB_Sequence__c = j;
+    block.CB_Quadrant__c = quadrant.Id;
+    block.CB_Cost__c = 3500;
+    insert block;
+
+    story = new CB_Story__c();
+    story.CB_Story_Text__c = 'What elements does a custom object automatically contain when it is created?';
+    story.CB_Solution_Data_Type__c = 'Radio';
+    story.CB_Block__c = block.Id;
+    insert story;
+
+    option1 = new CB_Solution_Option__c();
+    option1.CB_Story__c = story.Id;
+    option1.CB_Sequence__c = 0;
+    option1.CB_Solution_Text__c = 'Standard Controller';
+    option1.CB_Solution_Selection_Description__c = 'Standard Controller';
+    option1.CB_Reward__c = -7000;
+    option1.CB_Score__c = 'Bad';
+    insert option1;
+
+    option2 = new CB_Solution_Option__c();
+    option2.CB_Story__c = story.Id;
+    option2.CB_Sequence__c = 1;
+    option2.CB_Solution_Text__c = 'Page Layout';
+    option2.CB_Solution_Selection_Description__c = 'Page Layout';
+    option2.CB_Reward__c = 0;
+    option2.CB_Score__c = 'OK';
+    insert option2;
+
+    option3 = new CB_Solution_Option__c();
+    option3.CB_Story__c = story.Id;
+    option3.CB_Sequence__c = 2;
+    option3.CB_Solution_Text__c = 'Record Types';
+    option3.CB_Solution_Selection_Description__c = 'Record Types';
+    option3.CB_Reward__c = 20000;
+    option3.CB_Score__c = 'Best';
+    insert option3;
+
+    //--------
+    j=3;
+    block = new CB_Block__c();
+    block.CB_Block_Name__c = 'Block0-'+i+'-'+j;
+    block.CB_Sequence__c = j;
+    block.CB_Quadrant__c = quadrant.Id;
+    block.CB_Cost__c = 7000;
+    insert block;
+
+    story = new CB_Story__c();
+    story.CB_Story_Text__c = 'A custom object contains employee salary and other employee information. The HR Manager may see all information about the employee. However, the HR Administrator should not see the salary. What settings would you use to accomplish this?';
+    story.CB_Solution_Data_Type__c = 'Radio';
+    story.CB_Block__c = block.Id;
+    insert story;
+
+    option1 = new CB_Solution_Option__c();
+    option1.CB_Sequence__c = 0;
+    option1.CB_Story__c = story.Id;
+    option1.CB_Solution_Text__c = 'Organization Wide Default';
+    option1.CB_Solution_Selection_Description__c = 'Organization Wide Default';
+    option1.CB_Reward__c = -7000;
+    option1.CB_Score__c = 'Bad';
+    insert option1;
+
+    option2 = new CB_Solution_Option__c();
+    option3.CB_Story__c = story.Id;
+    option2.CB_Sequence__c = 1;
+    option2.CB_Solution_Text__c = 'Sharing Rules';
+    option2.CB_Solution_Selection_Description__c = 'Sharing Rules';
+    option2.CB_Reward__c = 0;
+    option2.CB_Score__c = 'OK';
+    insert option2;
+
+    option3 = new CB_Solution_Option__c();
+    option3.CB_Story__c = story.Id;
+    option3.CB_Sequence__c = 2;
+    option3.CB_Solution_Text__c = 'Field Level Security';
+    option3.CB_Solution_Selection_Description__c = 'Field Level Security';
+    option3.CB_Reward__c = 20000;
+    option3.CB_Score__c = 'Best';
+    insert option3;
+}
