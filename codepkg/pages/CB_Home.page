@@ -1,0 +1,112 @@
+<apex:page docType="html-5.0" showHeader="false" sidebar="false" standardStylesheets="false" applyHtmlTag="false"
+           applyBodyTag="false" controller="CB_HomeController" action="{!init}" >
+    <apex:composition template="CB_Template">
+        <apex:define name="contents">
+            <div class="contents play-contents">
+                <div class="container">
+                    <div class="carousel slide hidden-xs" id="cities">
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                            <apex:repeat value="{!cities}" var="city">
+                                <div class="item {!IF(city.sequence == 0,'active','')}">
+                                    <canvas width="1152" height="603"></canvas>
+                                </div>
+                            </apex:repeat>
+                        </div>
+
+                        <!-- Controls -->
+                        <div class="answer-btn left">
+                            <a href="#cities" data-slide="prev" class="btn btn-back-home btn-white">
+                                <i class="icons icon-48x48 icon-arrow-blue"></i>
+                            </a>
+                        </div>
+                        <div class="answer-btn right">
+                            <a href="#cities" data-slide="next" class="btn btn-back-home btn-white">
+                                <i class="icons icon-48x48 icon-arrow-blue"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="carousel slide visible-xs-block" id="cities-xs">
+                        <!-- Wrapper for slides -->
+                        <div class="carousel-inner">
+                            <apex:repeat value="{!cities}" var="city">
+                                <div class="item {!IF(city.sequence == 0,'active','')}">
+                                    <div class="panel-group" id="city-{!city.sequence}">
+                                        <apex:repeat value="{!city.quadrants}" var="quadrant">
+                                            <div class="panel panel-default">
+                                                <div class="panel-heading" data-toggle="collapse"
+                                                     data-parent="#city-{!city.sequence}"
+                                                     data-target="#quadrant-{!quadrant.sequence}">
+                                                    <h4 class="panel-title">
+                                                            {!quadrant.name}
+                                                    </h4>
+                                                </div>
+                                                <div id="quadrant-{!quadrant.sequence}"
+                                                     class="panel-collapse collapse in">
+                                                    <div class="panel-body">
+                                                        <apex:repeat value="{!quadrant.blocks}" var="block">
+                                                        <a href="{!IF(block.state == 3,URLFOR($Page.CB_Play)+'?blockId='+block.Id,'javascript:;')}" class="btn-block state-{!block.state}">{!block.name}</a>
+                                                        </apex:repeat>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </apex:repeat>
+                                    </div>
+                                </div>
+                            </apex:repeat>
+                        </div>
+
+                        <!-- Controls -->
+                        <div class="answer-btn left">
+                            <a href="#cities-xs" data-slide="prev" class="btn btn-back-home btn-white">
+                                <i class="icons icon-48x48 icon-arrow-blue"></i>
+                            </a>
+                        </div>
+                        <div class="answer-btn right">
+                            <a href="#cities-xs" data-slide="next" class="btn btn-back-home btn-white">
+                                <i class="icons icon-48x48 icon-arrow-blue"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- .contents -->
+        </apex:define>
+        <apex:define name="extras">
+            <!-- CityMap JS -->
+            <script>
+                var cities = [
+                        <apex:repeat value="{!cities}" var="city">
+                        {!IF(city.sequence > 0,',','')}
+                {
+                    name: "{!city.name}",
+                    resource: "{!URLFOR($Resource[city.resource])}/",
+                    quadrants: [
+                    <apex:repeat value="{!city.quadrants}" var="quadrant">
+                        {!IF(quadrant.sequence > 0,',','')}
+                        {
+                            name: "{!quadrant.name}",
+                            sequence: {!quadrant.sequence},
+                            blocks: [
+                <apex:repeat value="{!quadrant.blocks}" var="block">
+                        {!IF(block.sequence > 0,',','')}
+                                {
+                                    id: "{!block.Id}",
+                                    name: "{!block.name}",
+                                    sequence: {!block.sequence},
+                                    state: {!block.state},
+                                    cost: "{!block.cost}",
+                                }
+                </apex:repeat>
+                            ]
+                        }
+                    </apex:repeat>
+                    ]
+                }
+                        </apex:repeat>
+                ];
+                var page_CBG_Story = "{!URLFOR($Page.CB_Play)}"
+            </script>
+        </apex:define>
+    </apex:composition>
+</apex:page>

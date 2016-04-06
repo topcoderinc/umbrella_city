@@ -1,11 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-      <members>Admin</members>
-      <members>Standard</members>
-      <name>Profile</name>
-    </types>
-    <types>
         <members>CB_HomeController</members>
         <members>CB_HomeControllerTest</members>
         <members>CB_LeaderboardController</members>
@@ -58,6 +53,11 @@
         <members>CB_Story__c-Story Layout</members>
         <members>CB_User_Block__c-User Block Layout</members>
         <name>Layout</name>
+    </types>
+    <types>
+        <members>Admin</members>
+        <members>Standard</members>
+        <name>Profile</name>
     </types>
     <types>
         <members>CB_Base</members>

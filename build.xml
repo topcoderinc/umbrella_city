@@ -11,6 +11,7 @@
         password="${sf.password}"
         serverurl="${sf.serverurl}"
         maxPoll="${sf.maxPoll}"
+        pollWaitMillis="40000"
         deployRoot="src">
       </sf:deploy>
     </target>
@@ -24,8 +25,20 @@
         password="${sf.password}"
         serverurl="${sf.serverurl}"
         maxPoll="${sf.maxPoll}"
-        retrieveTarget="codepkg" 
+        retrieveTarget="codepkg"
+        pollWaitMillis="40000"
         unpackaged="src/package.xml"/>
     </target>
+
+    <target name="removeFromdev5">
+  <sf:deploy
+    purgeOnDelete="true"
+    username="${sf.username}"
+    password="${sf.password}"
+    serverurl="${sf.serverurl}"
+    pollWaitMillis="40000"
+    deployroot="undeploy">
+  </sf:deploy>
+</target>
 
 </project>
