@@ -134,6 +134,27 @@
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
+    <listViews>
+        <fullName>Tom_Test_Block_IDs</fullName>
+        <columns>NAME</columns>
+        <columns>OBJECT_ID</columns>
+        <columns>CB_Block_Name__c</columns>
+        <columns>CREATEDBY_USER</columns>
+        <filterScope>Everything</filterScope>
+        <filters>
+            <field>OBJECT_ID</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>NAME</field>
+            <operation>equals</operation>
+        </filters>
+        <filters>
+            <field>CREATEDBY_USER.ALIAS</field>
+            <operation>equals</operation>
+        </filters>
+        <label>Tom Test Block IDs</label>
+    </listViews>
     <nameField>
         <displayFormat>Block - {0000}</displayFormat>
         <label>Name</label>

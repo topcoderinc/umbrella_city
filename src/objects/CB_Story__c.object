@@ -102,9 +102,24 @@
         <type>LongTextArea</type>
         <visibleLines>3</visibleLines>
     </fields>
+    <fields>
+        <fullName>Price__c</fullName>
+        <description>This is the cost of taking a scenario challenge</description>
+        <externalId>false</externalId>
+        <label>Price</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
     <label>Story</label>
     <listViews>
         <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>CB_Block__c</columns>
+        <columns>CB_Story_Text__c</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>

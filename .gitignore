@@ -1,2 +1,7 @@
 build.properties
 .DS_Store
+src/staticresources/*.zip
+src/staticresources/CB_Base
+src/staticresources/CB_City_0
+demoOrg
+clearData.apex

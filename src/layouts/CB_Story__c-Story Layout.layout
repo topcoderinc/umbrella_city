@@ -23,6 +23,10 @@
                 <behavior>Edit</behavior>
                 <field>CB_Solution_Data_Type__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>Price__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

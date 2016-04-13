@@ -83,6 +83,10 @@
     <label>City</label>
     <listViews>
         <fullName>All</fullName>
+        <columns>NAME</columns>
+        <columns>CB_City_Name__c</columns>
+        <columns>CB_Image_URL__c</columns>
+        <columns>CREATED_DATE</columns>
         <filterScope>Everything</filterScope>
         <label>All</label>
     </listViews>
