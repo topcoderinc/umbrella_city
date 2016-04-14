@@ -1,0 +1,66 @@
+<apex:page docType="html-5.0" showHeader="false" sidebar="false" standardStylesheets="false" applyHtmlTag="false" applyBodyTag="false">
+    <apex:composition template="CB_Template">
+        <apex:define name="contents">
+            <div class="contents rules-contents">
+                <div class="container-fluid">
+                    <div class="corner"></div>
+                    <div class="main-content-area">
+                        <div class="title-area">
+                            <div class="title txt-blue">rules</div>
+                        </div>
+                        <!-- .title-area -->
+                        <div class="main-content">
+                            <div class="row">
+                                <span class="rule-title txt-blue">Acme lorem ipsum dolor sit amet?</span>
+                                <p class="rule-txt txt-gray">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                                    Morbi nec orci sem. Suspendisse vel sapien nec justo facilisis volutpat eu nec turpis.
+                                    Suspendisse mollis enim volutpat augue vehicula elementum.
+                                </p>
+                            </div>
+                            <!-- .row each rule code to duplicate to add new -->
+                            <div class="row">
+                                <span class="rule-title txt-blue">Acme lorem ipsum dolor?</span>
+                                <p class="rule-txt txt-gray">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec orci sem.
+                                    Suspendisse vel sapien nec justo facilisis volutpat eu nec turpis. Suspendisse mollis enim volutpat augue vehicula elementum. Morbi nec orci sem.
+                                    Suspendisse vel sapien nec justo facilisis volutpat eu nec turpis. Suspendisse mollis enim volutpat augue vehicula elementum.
+                                </p>
+                            </div>
+                            <!-- .row each rule code to duplicate to add new -->
+                            <div class="row">
+                                <span class="rule-title txt-blue">Acme lorem ipsum dolor sit amet?</span>
+                                <p class="rule-txt txt-gray">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec orci sem. Suspendisse vel sapien nec justo facilisis volutpat eu nec turpis.
+                                    Suspendisse mollis enim volutpat augue vehicula elementum is enim volutpat augue vehicula elementum. Morbi nec orci sem. Suspendisse vel sapien nec justo.
+                                </p>
+                            </div>
+                            <!-- .row each rule code to duplicate to add new -->
+                            <div class="row">
+                                <span class="rule-title txt-blue">Acme lorem ipsum dolor sit amet?</span>
+                                <p class="rule-txt txt-gray">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec orci sem.
+                                    Suspendisse vel sapien nec justo facilisis volutpat eu nec turpis. Suspendisse mollis enim volutpat augue vehicula elementum. Morbi nec orci sem.
+                                    Suspendisse vel sapien nec justo facilisis volutpat eu nec turpis. Suspendisse mollis enim volutpat augue vehicula elementum.
+                                </p>
+                            </div>
+                            <!-- .row each rule code to duplicate to add new -->
+                            <div class="row">
+                                <span class="rule-title txt-blue">Acme lorem ipsum doloramet?</span>
+                                <p class="rule-txt txt-gray">
+                                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec orci sem.
+                                    Suspendisse vel sapien nec justo facilisis volutpat eu nec turpis. Suspendisse mollis enim volutpat augue vehicula elementum. Morbi nec orci sem.
+                                    Suspendisse vel sapien nec justo facilisis volutpat eu nec turpis. Suspendisse mollis enim volutpat augue vehicula elementum.
+                                </p>
+                            </div>
+                            <!-- .row each rule code to duplicate to add new -->
+                        </div>
+                        <!-- .main-content -->
+                    </div>
+                    <!-- .main-content-area -->
+                </div>
+            </div>
+            <!-- .contents -->
+        </apex:define>
+    </apex:composition>
+</apex:page>
