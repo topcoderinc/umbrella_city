@@ -16,6 +16,18 @@
       </sf:deploy>
     </target>
 
+    <target name="deployDemo2dev5">
+      <!-- Upload the contents of the "src" directory -->
+      <sf:deploy
+        username="${sf.username}"
+        password="${sf.password}"
+        serverurl="${sf.serverurl}"
+        maxPoll="${sf.maxPoll}"
+        pollWaitMillis="40000"
+        deployRoot="demoOrg">
+      </sf:deploy>
+    </target>
+
 
 
     <!-- Shows retrieving code; only succeeds if done after deployCode -->

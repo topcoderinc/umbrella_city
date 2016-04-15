@@ -56,13 +56,17 @@
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>CB_Reward__c</fullName>
-        <description>Reward amount received by the user, by selecting the option. It&apos;s negative  for Bad Answers</description>
+        <description>Amount is 1.72 for Best Option, 0 for OK Option, and -1.25 for Bad Option</description>
         <externalId>false</externalId>
-        <inlineHelpText>Reward amount received by the user, by selecting the option. It&apos;s negative  for Bad Answers</inlineHelpText>
+        <formula>CASE(CB_Score__c,
+     &quot;Bad&quot;, -1 * (CB_Story__r.CB_Block__r.CB_Cost__c * 1.25),
+     &quot;Best&quot;,CB_Story__r.CB_Block__r.CB_Cost__c * 1.72,
+     0 )</formula>
+        <inlineHelpText>Amount is 1.72 for Best Option, 0 for OK Option, and -1.25 for Bad Option</inlineHelpText>
         <label>Reward</label>
         <precision>18</precision>
         <required>false</required>
-        <scale>0</scale>
+        <scale>2</scale>
         <trackHistory>false</trackHistory>
         <trackTrending>false</trackTrending>
         <type>Currency</type>

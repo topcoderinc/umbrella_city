@@ -7,6 +7,7 @@ private class CB_PlayControllerTest {
 	/**
 	 * test method for init
 	 */
+	 
     static testMethod void initTest() {
         CB_TestData.createTestData();
         CB_Block__c block = [Select id From CB_Block__c where CB_Block_Name__c =: CB_TestData.BLOCK_4_C1Q1_NAME limit 1];

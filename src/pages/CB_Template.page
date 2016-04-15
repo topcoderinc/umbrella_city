@@ -103,6 +103,7 @@
                     </div>
                     <!-- .main -->
                 </div>
+                
                 <!-- .col -->
                 <div class="col col-md-2">
                     <div class="main">
@@ -122,11 +123,12 @@
             </div>
             <!-- .row -->
         </div>
+        
         <!-- .profile-module -->
         <div class="copyright-bar">
             <i class="corner-top"></i>
 
-            <div class="copyright txt-black">Copyright � 2016 UMBRELLA All rights reserved.</div>
+            <div class="copyright txt-black">Copyright ? 2016 UMBRELLA All rights reserved.</div>
             <div class="link">
                 <ul>
                     <li>

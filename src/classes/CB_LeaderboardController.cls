@@ -27,7 +27,7 @@ public with sharing class CB_LeaderboardController {
 			GameUser gameUser = new GameUser();
 			gameUser.sfdcUserId = user.CB_User__c;
 			gameUser.rank = rank;
-			gameUser.level = user.CB_Level__c;
+			gameUser.level = String.valueOf(user.CB_Level__c);
 			gameUser.title = user.CB_Title__c;
 			// add the case of test class. In test class user.CB_User__r.Name is getting null
 			gameUser.userName = user.CB_User__r.Name == null ? user.Name : user.CB_User__r.Name;

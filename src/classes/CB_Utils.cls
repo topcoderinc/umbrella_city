@@ -53,7 +53,7 @@ public with sharing class CB_Utils {
 		return gameUsers;
 	}
 		
-	
+
 	/**
 	 * Method to get the Game User details for current logged in user. Creating a Game User if one does not exist for current user.
 	 */
@@ -337,11 +337,11 @@ public with sharing class CB_Utils {
          String currencySymbol = 
            ('USD' == Iso ? '$' : 
            ('CAD' == Iso ? '$' : 
-           ('EUR' == Iso ? '€' : 
-           ('GBP' == Iso ? '£' : 
-           ('JPY' == Iso ? '¥' : 
-           ('KRW' == Iso ? '₩' : 
-           ('CNY' == Iso ? '元' : 
+           ('EUR' == Iso ? '�' : 
+           ('GBP' == Iso ? '�' : 
+           ('JPY' == Iso ? '�' : 
+           ('KRW' == Iso ? '?' : 
+           ('CNY' == Iso ? '?' : 
            Iso)))))));
            return currencySymbol;
     }
@@ -406,7 +406,7 @@ public with sharing class CB_Utils {
      * Searching for user based on the search string passed as parameter.
      */
     public static List<CB_Game_User__c> searchUserResult(String searchString) {
-    	List<CB_Game_User__c> gameUsers = [Select Name, CB_Title__c, CB_Level__c, CB_Budget__c, CB_User__c, CB_User__r.Name, 
+    	List<CB_Game_User__c> gameUsers = [Select Name, CB_Title__c, /*CB_Level__c,*/ CB_Budget__c, CB_User__c, CB_User__r.Name, 
 						CB_Blocks_Completed__c, CB_User__r.SmallPhotoUrl From CB_Game_User__c 
 						where CB_Title__c like: searchString OR CB_User__r.Name like: searchString
 						order by CB_Budget__c desc limit : GAME_USER_QUERY_LIMIT];

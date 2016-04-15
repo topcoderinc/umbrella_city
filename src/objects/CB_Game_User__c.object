@@ -99,51 +99,24 @@
     </fields>
     <fields>
         <fullName>CB_Level__c</fullName>
-        <description>Level Reached by the user</description>
+        <description>Level Attended by the User, based on Title</description>
         <externalId>false</externalId>
-        <inlineHelpText>Level Reached by the user</inlineHelpText>
+        <formula>CASE(CB_Title__c,
+     &quot;Overlord Architect&quot;,7,
+     &quot;Black belt Architect&quot;,6,
+     &quot;Competent Architect&quot;,5,
+     &quot;Junior Architect&quot;,4,
+     &quot;Structural Engineer&quot;,3,
+     &quot;Town Planner&quot;,2,
+     1)</formula>
+        <inlineHelpText>Level Attended by the User, based on Title</inlineHelpText>
         <label>Level</label>
-        <picklist>
-            <picklistValues>
-                <fullName>1</fullName>
-                <default>true</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>2</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>3</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>4</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>5</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>6</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>7</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>8</fullName>
-                <default>false</default>
-            </picklistValues>
-            <picklistValues>
-                <fullName>9</fullName>
-                <default>false</default>
-            </picklistValues>
-            <sorted>false</sorted>
-        </picklist>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
         <trackTrending>false</trackTrending>
-        <type>Picklist</type>
+        <type>Number</type>
+        <unique>false</unique>
     </fields>
     <fields>
         <fullName>CB_Title__c</fullName>

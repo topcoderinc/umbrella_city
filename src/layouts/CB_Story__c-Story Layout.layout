@@ -67,7 +67,6 @@
     </layoutSections>
     <relatedLists>
         <fields>NAME</fields>
-        <fields>CB_Reward__c</fields>
         <fields>CB_Score__c</fields>
         <fields>CB_Sequence__c</fields>
         <fields>CB_Solution_Text__c</fields>

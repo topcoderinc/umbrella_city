@@ -48,7 +48,7 @@ public with sharing class CB_TestData {
 		option.CB_Sequence__c = sequence;
 		option.CB_Solution_Text__c = solutionText;
 		option.CB_Solution_Selection_Description__c = solutionText;
-		option.CB_Reward__c = reward;
+		//option.CB_Reward_Amount__c = reward;
 		option.CB_Score__c = score;
 		return option;
 	}

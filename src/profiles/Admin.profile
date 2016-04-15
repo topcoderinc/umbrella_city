@@ -79,7 +79,7 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CB_Game_User__c.CB_Level__c</field>
         <readable>true</readable>
     </fieldPermissions>
@@ -119,9 +119,9 @@
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
-        <editable>true</editable>
+        <editable>false</editable>
         <field>CB_Solution_Option__c.CB_Reward__c</field>
-        <readable>true</readable>
+        <readable>false</readable>
     </fieldPermissions>
     <fieldPermissions>
         <editable>true</editable>
@@ -181,6 +181,11 @@
     <fieldPermissions>
         <editable>true</editable>
         <field>CB_Story__c.CB_Story_Text__c</field>
+        <readable>true</readable>
+    </fieldPermissions>
+    <fieldPermissions>
+        <editable>true</editable>
+        <field>CB_Story__c.Price__c</field>
         <readable>true</readable>
     </fieldPermissions>
     <fieldPermissions>
@@ -333,6 +338,5 @@
         <tab>Game</tab>
         <visibility>DefaultOn</visibility>
     </tabVisibilities>
-        <userLicense>Salesforce</userLicense>
-
+    <userLicense>Salesforce</userLicense>
 </Profile>
