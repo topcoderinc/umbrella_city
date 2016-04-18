@@ -11,9 +11,13 @@ public with sharing class CB_TestData {
 	public static final String BLOCK_2_C2Q1_NAME = 'Block2-C2-Q1';
 	
 	public static CB_City__c createCity(String cityName) {
+		return createCity(cityName, CB_Utils.CITY_0_IMAGE_URL);
+	}
+	
+	public static CB_City__c createCity(String cityName, String cityImageURL) {
 		CB_City__c city = new CB_City__c();
 		city.CB_City_Name__c = cityName;
-		city.CB_Image_URL__c = 'Test_city01';
+		city.CB_Image_URL__c = cityImageURL;
 		return city;
 	}
 	
@@ -48,7 +52,7 @@ public with sharing class CB_TestData {
 		option.CB_Sequence__c = sequence;
 		option.CB_Solution_Text__c = solutionText;
 		option.CB_Solution_Selection_Description__c = solutionText;
-		//option.CB_Reward_Amount__c = reward;
+		option.CB_Reward__c = reward;
 		option.CB_Score__c = score;
 		return option;
 	}
