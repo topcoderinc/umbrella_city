@@ -1,5 +1,6 @@
 <apex:page docType="html-5.0" showHeader="false" sidebar="false" standardStylesheets="false" applyHtmlTag="false"
            applyBodyTag="false" controller="CB_HomeController" action="{!init}" >
+          
     <apex:composition template="CB_Template">
         <apex:define name="contents">
             <div class="contents play-contents">
@@ -55,9 +56,11 @@
                                 </div>
                             </apex:repeat>
                         </div>
+                        
+                        
 
                         <!-- Controls -->
-                        <div class="answer-btn left">
+                        <div class="answer-btn left" >
                             <a href="#cities-xs" data-slide="prev" class="btn btn-back-home btn-white">
                                 <i class="icons icon-48x48 icon-arrow-blue"></i>
                             </a>
@@ -69,6 +72,17 @@
                         </div>
                     </div>
                 </div>
+                
+                 <div class="container-fluid hide" id="block-question-id" >
+                    <div class="acme-block-tooltip acme-block-right">
+                        <div class="txt">
+                            <div class="title txt-orange" ><span>Block Name | </span>Quadrant Name</div> <!-- Block Name / quadrant Name -->
+                            <p class="txt-black" > Block Story Text</p>
+                        </div>
+                        <!-- .txt -->
+                    </div>
+                 </div>
+                
             </div>
             <!-- .contents -->
         </apex:define>
@@ -96,6 +110,7 @@
                                     sequence: {!block.sequence},
                                     state: {!block.state},
                                     cost: "{!block.cost}",
+                                    question: "{!block.question}"
                                 }
                 </apex:repeat>
                             ]
