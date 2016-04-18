@@ -19,6 +19,9 @@ public with sharing class CB_Utils {
 	public static String NOT_BAD_MESSAGE = 'You will not receive a budget increase';
 	public static String BEST_MESSAGE = 'You have gained ';
 	
+	public static String CITY_0_IMAGE_URL = 'CB_City_0';
+	public static String CITY_1_IMAGE_URL = 'CB_City_1';
+	
 	// Setting default Game user query limit as 20 
 	public static final Integer GAME_USER_QUERY_LIMIT = 20;
 	
@@ -53,7 +56,7 @@ public with sharing class CB_Utils {
 		return gameUsers;
 	}
 		
-
+	
 	/**
 	 * Method to get the Game User details for current logged in user. Creating a Game User if one does not exist for current user.
 	 */
@@ -337,11 +340,11 @@ public with sharing class CB_Utils {
          String currencySymbol = 
            ('USD' == Iso ? '$' : 
            ('CAD' == Iso ? '$' : 
-           ('EUR' == Iso ? '�' : 
-           ('GBP' == Iso ? '�' : 
-           ('JPY' == Iso ? '�' : 
-           ('KRW' == Iso ? '?' : 
-           ('CNY' == Iso ? '?' : 
+           ('EUR' == Iso ? '€' : 
+           ('GBP' == Iso ? '£' : 
+           ('JPY' == Iso ? '¥' : 
+           ('KRW' == Iso ? '₩' : 
+           ('CNY' == Iso ? '元' : 
            Iso)))))));
            return currencySymbol;
     }
@@ -406,11 +409,23 @@ public with sharing class CB_Utils {
      * Searching for user based on the search string passed as parameter.
      */
     public static List<CB_Game_User__c> searchUserResult(String searchString) {
-    	List<CB_Game_User__c> gameUsers = [Select Name, CB_Title__c, /*CB_Level__c,*/ CB_Budget__c, CB_User__c, CB_User__r.Name, 
+    	List<CB_Game_User__c> gameUsers = [Select Name, CB_Title__c, CB_Level__c, CB_Budget__c, CB_User__c, CB_User__r.Name, 
 						CB_Blocks_Completed__c, CB_User__r.SmallPhotoUrl From CB_Game_User__c 
 						where CB_Title__c like: searchString OR CB_User__r.Name like: searchString
 						order by CB_Budget__c desc limit : GAME_USER_QUERY_LIMIT];
 		return gameUsers;				
+    }
+    
+    /**
+     * Method to get city for the selected quadrant whose id passed as argument.
+     */
+    public static CB_City__c getSelectedQuadrantCity(Id quadrantId) {
+    	List<CB_Quadrant__c> quadrants = [Select CB_City__r.CB_Image_URL__c, CB_City__r.CB_City_Name__c, CB_City__c From CB_Quadrant__c where id=: quadrantId];
+    	
+    	CB_City__c city;
+		if(!quadrants.isEmpty()) city = quadrants.get(0).CB_City__r;
+		return city;
+    	
     }
 	
 	// Custom exception class

@@ -106,6 +106,50 @@ public with sharing class CB_PlayController {
 		return ref;
 	}
 	
+	/**
+	 * Method to get city index based on the city URL. Default index will be zero
+	 */
+	public string getCityIndex() {
+		CB_City__c city = CB_Utils.getSelectedQuadrantCity(this.block.CB_Quadrant__c);
+		String index = '0';
+		if(city != null && city.CB_Image_URL__c == CB_Utils.CITY_1_IMAGE_URL) {
+			index = '1';
+		}
+		return index;
+	}
+	
+	/**
+	 * Method to get style class dynamically based on the selected city, quadrant and block. 
+	 */
+	public string getBlockStyleClass() {
+		CB_City__c city = CB_Utils.getSelectedQuadrantCity(this.block.CB_Quadrant__c);
+		String styleClass = '';
+		if(city != null) {
+			styleClass = 'city1-icons-img';
+			if(city.CB_Image_URL__c == CB_Utils.CITY_0_IMAGE_URL) {
+				styleClass = 'city0-icons-img';
+				if(this.block.CB_Quadrant__r.CB_Sequence__c < 2 || (this.block.CB_Quadrant__r.CB_Sequence__c == 2 && this.block.CB_Sequence__c == 0)) {
+					styleClass += '0';
+				} else if(this.block.CB_Quadrant__r.CB_Sequence__c < 4 || (this.block.CB_Quadrant__r.CB_Sequence__c == 4 && this.block.CB_Sequence__c == 0)) {
+					styleClass += '1';
+				} else if(this.block.CB_Quadrant__r.CB_Sequence__c < 6 || (this.block.CB_Quadrant__r.CB_Sequence__c == 6 && this.block.CB_Sequence__c == 0)) {
+					styleClass += '2';
+				} else if(this.block.CB_Quadrant__r.CB_Sequence__c < 8 || (this.block.CB_Quadrant__r.CB_Sequence__c == 8 && this.block.CB_Sequence__c == 0)) {
+					styleClass += '3';
+				} else if(this.block.CB_Quadrant__r.CB_Sequence__c < 9 || (this.block.CB_Quadrant__r.CB_Sequence__c == 9 && this.block.CB_Sequence__c < 3)) {
+					styleClass += '4';
+				} else if((this.block.CB_Quadrant__r.CB_Sequence__c == 9 && this.block.CB_Sequence__c == 3) || this.block.CB_Quadrant__r.CB_Sequence__c < 12) {
+					styleClass += '5';
+				} else if(this.block.CB_Quadrant__r.CB_Sequence__c == 12 || (this.block.CB_Quadrant__r.CB_Sequence__c == 13 && this.block.CB_Sequence__c < 3)) {
+					styleClass += '6';
+				} else if((this.block.CB_Quadrant__r.CB_Sequence__c == 13 && this.block.CB_Sequence__c == 3) || this.block.CB_Quadrant__r.CB_Sequence__c > 13) {
+					styleClass += '7';
+				}
+			}
+		}
+		return styleClass;
+	}
+	
 	// Message variables used on VF page 
 	public String oopsModalMessage { get { return CB_Utils.OPPS_MESSAGE; } set;}
 	public String notBadModalMessage { get { return CB_Utils.NOT_BAD_MESSAGE; } set;}

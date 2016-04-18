@@ -7,7 +7,6 @@ private class CB_PlayControllerTest {
 	/**
 	 * test method for init
 	 */
-	 
     static testMethod void initTest() {
         CB_TestData.createTestData();
         CB_Block__c block = [Select id From CB_Block__c where CB_Block_Name__c =: CB_TestData.BLOCK_4_C1Q1_NAME limit 1];
@@ -148,6 +147,37 @@ private class CB_PlayControllerTest {
     	system.assertEquals(CB_Utils.OPPS_MESSAGE, controller.oopsModalMessage);
     	system.assertEquals(CB_Utils.NOT_BAD_MESSAGE, controller.notBadModalMessage);
     	system.assertEquals(CB_Utils.BEST_MESSAGE, controller.successModalMessage);
+    	
+    	Test.stopTest();
+    }
+    
+    /**
+	 * test method for getBlockStyleClass
+	 */
+    static testMethod void getBlockStyleClassTest() {
+        CB_TestData.createTestData();
+        CB_Block__c block = [Select id From CB_Block__c where CB_Block_Name__c =: CB_TestData.BLOCK_4_C1Q1_NAME limit 1];
+    	
+    	Test.setCurrentPage(Page.CB_Play);
+    	ApexPages.currentPage().getParameters().put('blockId', block.Id);
+    	
+    	Test.startTest();
+    	CB_PlayController controller = new CB_PlayController();
+    	controller.init();
+    	
+    	system.assert(controller.isBlockValidToPlay );
+    	system.assertEquals(CB_TestData.BLOCK_4_C1Q1_NAME, controller.block.CB_Block_Name__c);
+    	
+    	system.assertEquals(3, controller.solutionOptionsByScoreType.size());
+    	system.assertEquals(15000, controller.solutionOptionsByScoreType.get(CB_Utils.SOLUTION_OPTION_BEST).CB_Reward__c);
+    	
+    	String styleClass = controller.getBlockStyleClass();
+    	system.assert(styleClass != null);
+    	system.assertEquals('city0-icons-img0', styleClass);
+    	
+    	String cityIndex = controller.getCityIndex();
+    	system.assert(cityIndex != null);
+    	system.assertEquals('0', cityIndex);
     	
     	Test.stopTest();
     }
