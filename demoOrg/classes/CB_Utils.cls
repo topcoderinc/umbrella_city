@@ -20,7 +20,13 @@ public with sharing class CB_Utils {
 	public static String BEST_MESSAGE = 'You have gained ';
 	
 	// Setting default Game user query limit as 20 
-	public static final Integer GAME_USER_QUERY_LIMIT = 20;
+	public static final Integer GAME_USER_QUERY_LIMIT = 100;
+	
+	public static Decimal defaultBudgetValue = null;
+	
+	public static String CITY_0_IMAGE_URL = 'CB_City_0';
+    public static String CITY_1_IMAGE_URL = 'CB_City_1';
+    
 	
 	/**
 	 * Method to get the User block record matching the Block and Game user id passed as argument. If there is not User Blcok 
@@ -48,8 +54,11 @@ public with sharing class CB_Utils {
 	 * Method to get the all Game User details to show on leader board.
 	 */
 	public static List<CB_Game_User__c> getGameUsers() {
+		
 		List<CB_Game_User__c> gameUsers = [Select Name, CB_Title__c, CB_Level__c, CB_Budget__c, CB_User__c, CB_Blocks_Completed__c, CB_User__r.Name, 
-									CB_User__r.SmallPhotoUrl From CB_Game_User__c order by CB_Budget__c desc limit :GAME_USER_QUERY_LIMIT];
+									CB_User__r.SmallPhotoUrl From CB_Game_User__c
+									WHERE  CB_Budget__c > :getDefaultBudgetValue()
+								    order by CB_Budget__c desc limit :GAME_USER_QUERY_LIMIT];
 		return gameUsers;
 	}
 		
@@ -58,7 +67,8 @@ public with sharing class CB_Utils {
 	 * Method to get the Game User details for current logged in user. Creating a Game User if one does not exist for current user.
 	 */
 	public static CB_Game_User__c getCurrentLoggedInGameUser() {
-		List<CB_Game_User__c> gameUsers = [Select Name, CB_Title__c, CB_Level__c, CB_Budget__c, CB_User__r.SmallPhotoUrl, CB_Blocks_Completed__c From CB_Game_User__c where CB_User__c =: UserInfo.getUserId()];
+		List<CB_Game_User__c> gameUsers = [Select Name,CB_Streak__c,CB_Title__c, CB_Level__c, CB_Budget__c, CB_User__r.SmallPhotoUrl,
+		    CB_Blocks_Completed__c From CB_Game_User__c where CB_User__c =: UserInfo.getUserId()];
 		
 		if(gameUsers.isEmpty()) {
 			CB_Game_User__c gameUser = new CB_Game_User__c();
@@ -402,15 +412,64 @@ public with sharing class CB_Utils {
        return completedQuadrantCountByGameUserIdMap;
     }
     
+     
     /** 
      * Searching for user based on the search string passed as parameter.
      */
     public static List<CB_Game_User__c> searchUserResult(String searchString) {
-    	List<CB_Game_User__c> gameUsers = [Select Name, CB_Title__c, /*CB_Level__c,*/ CB_Budget__c, CB_User__c, CB_User__r.Name, 
+    	List<CB_Game_User__c> gameUsers = [Select Name, CB_Title__c, CB_Level__c, CB_Budget__c, CB_User__c, CB_User__r.Name, 
 						CB_Blocks_Completed__c, CB_User__r.SmallPhotoUrl From CB_Game_User__c 
-						where CB_Title__c like: searchString OR CB_User__r.Name like: searchString
+						where 
+						(CB_Title__c like: searchString OR CB_User__r.Name like: searchString)
+						AND  CB_Budget__c > :getDefaultBudgetValue()
 						order by CB_Budget__c desc limit : GAME_USER_QUERY_LIMIT];
 		return gameUsers;				
+    }
+    
+    /*
+    * get Default Value for the Allocated Budget, that can be used to weed out non playing users
+    */
+    public static Decimal getDefaultBudgetValue(){
+      if(defaultBudgetValue != null) {
+        return defaultBudgetValue;
+      }
+      Schema.DescribeFieldResult describeFieldResult = CB_Game_User__c.CB_Allocated_Budget__c.getDescribe();
+      
+      if(describeFieldResult.getDefaultValueFormula() != null){
+        defaultBudgetValue = Decimal.valueOf(describeFieldResult.getDefaultValueFormula());
+      }
+      else {
+        defaultBudgetValue = 0;
+      }
+      
+      return defaultBudgetValue;
+    }
+    
+    /**
+    * Get the User Rank of the current User
+    */
+    public static String getUserRank(Id userId){
+      Integer rank = 1;
+      
+      for(CB_Game_User__c gameUser :getGameUsers()){
+      	if(gameUser.CB_User__c == userId){
+      	  return String.valueOf(rank);
+      	}
+      	rank++;
+      }
+      
+      return '999+'; //If rank is not found, assume its way behind
+    }
+    /**
+     * Method to get city for the selected quadrant whose id passed as argument.
+     */
+    public static CB_City__c getSelectedQuadrantCity(Id quadrantId) {
+        List<CB_Quadrant__c> quadrants = [Select CB_City__r.CB_Image_URL__c, CB_City__r.CB_City_Name__c, CB_City__c From CB_Quadrant__c where id=: quadrantId];
+        
+        CB_City__c city;
+        if(!quadrants.isEmpty()) city = quadrants.get(0).CB_City__r;
+        return city;
+        
     }
 	
 	// Custom exception class

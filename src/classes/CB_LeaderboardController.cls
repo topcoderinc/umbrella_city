@@ -35,7 +35,9 @@ public with sharing class CB_LeaderboardController {
 			gameUser.blocksCompleted = (Integer)user.CB_Blocks_Completed__c;
 			gameUser.quadrantsCompleted = completedQuadrantCountByGameUserIdMap.get(user.id);
 			
-			Decimal budgetInMillion = user.CB_Budget__c != null ? (user.CB_Budget__c/100000) : 0.00;
+			//Decimal budgetInMillion = user.CB_Budget__c != null ? (user.CB_Budget__c/100000) : 0.00;
+			Decimal budgetInMillion = getRoundedValueInMillion(user.CB_Budget__c); 
+			
 			gameUser.currentBudget = CB_Utils.getCurrencySymbol(user) + budgetInMillion +'M';
 			rank++;
 			gameUserList.add(gameUser);
@@ -54,6 +56,18 @@ public with sharing class CB_LeaderboardController {
 			guList.add(gu);
 		}
 		return gameUserListOfList;
+	}
+	
+	
+	public Decimal getRoundedValueInMillion(Decimal budget){
+	  if(budget == null) return 0.00;
+	  //convert to 2 decimal places
+	  budget = budget / 100000;
+	  
+	  //Set Rounding expectations
+	  budget = budget.setScale(2, RoundingMode.HALF_UP);
+	  return budget;
+	  
 	}
 	
 	// Variable holding search string enterd by user

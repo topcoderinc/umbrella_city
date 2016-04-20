@@ -1,12 +1,18 @@
 <apex:page docType="html-5.0" showHeader="false" sidebar="false" standardStylesheets="false" applyHtmlTag="false"
  applyBodyTag="false" controller="CB_PlayController" action="{!init}" >
+ 
+    <link href="{!URLFOR($Resource.CB_City_0,'city0-blocks-style.css')}" rel="stylesheet"/>
+    <link href="{!URLFOR($Resource.CB_City_1,'city1-blocks-style.css')}" rel="stylesheet"/>
+ 
     <apex:composition template="CB_Template">
         <apex:define name="contents">
             <div class="contents play-contents">
             	<apex:outputPanel rendered="{!NOT(isBlockValidToPlay)}"> 
             		 <div class="acme-block">
                         <div class="acme-img pull-left">
-                            <img src="{!URLFOR($Resource.CB_Base, IF(ISNULL(block.CB_Icon_Image_URL__c),'i/acme-img-116x116.jpg',block.CB_Icon_Image_URL__c))}" alt="img"/>
+                            <!--  <img src="{!URLFOR($Resource.CB_Base, IF(ISNULL(block.CB_Icon_Image_URL__c),'i/acme-img-116x116.jpg',block.CB_Icon_Image_URL__c))}" alt="img"/> -->
+                            <div class="{!blockStyleClass} city{!cityIndex}-icon-best-q{!block.CB_Quadrant__r.CB_Sequence__c}-b{!block.CB_Sequence__c}" />
+                            
                         </div>
                         <div class="txt">
                             <div class="title txt-orange"><span>{!block.CB_Block_Name__c} | </span>{!block.CB_Quadrant__r.CB_Quadrant_Name__c}</div> <!-- Block Name / quadrant Name -->
@@ -31,7 +37,8 @@
                 <div class="container-fluid">
                     <div class="acme-block">
                         <div class="acme-img pull-left">
-                            <img src="{!URLFOR($Resource.CB_Base, IF(ISNULL(block.CB_Icon_Image_URL__c),'i/acme-img-116x116.jpg',block.CB_Icon_Image_URL__c))}" alt="img"/>
+                            <!-- <img src="{!URLFOR($Resource.CB_Base, IF(ISNULL(block.CB_Icon_Image_URL__c),'i/acme-img-116x116.jpg',block.CB_Icon_Image_URL__c))}" alt="img"/> -->
+                            <div class="{!blockStyleClass} city{!cityIndex}-icon-best-q{!block.CB_Quadrant__r.CB_Sequence__c}-b{!block.CB_Sequence__c}" />
                         </div>
                         <div class="txt">
                             <div class="title txt-orange"><span>{!block.CB_Block_Name__c} | </span>{!block.CB_Quadrant__r.CB_Quadrant_Name__c}</div> <!-- Block Name / quadrant Name -->
@@ -87,6 +94,9 @@
                         <div class="modal-header">
                             <h4 class="modal-title">Oops!</h4>
                         </div>
+                         <div class="ans-orange-img" >
+                            <div class="{!blockStyleClass} city{!cityIndex}-icon-ok-q{!block.CB_Quadrant__r.CB_Sequence__c}-b{!block.CB_Sequence__c}" />
+                         </div>
                         <div class="modal-body">
                             <p class="txt-red">Please select a different solution in order to complete this level. However, you will lose some budget for doing so.</p>
                             <p class="txt-black">{!oopsModalMessage}<span><apex:outputField value="{!solutionOptionsByScoreType['Bad'].CB_Reward__c}" /></span></p> <!-- Display the Negative Reward Amount as per controller -->
@@ -107,6 +117,9 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h4 class="modal-title">Not Bad</h4>
+                        </div>
+                        <div class="ans-orange-img" >
+                            <div class="{!blockStyleClass} city{!cityIndex}-icon-ok-q{!block.CB_Quadrant__r.CB_Sequence__c}-b{!block.CB_Sequence__c}" />
                         </div>
                         <div class="modal-body">
                             <p class="txt-orange">Your solution is acceptable, BUT...</p>
@@ -136,6 +149,10 @@
                         <div class="modal-header">
                             <h4 class="modal-title">Success</h4>
                         </div>
+                         <div class="ans-green-img" >
+                            <div class="{!blockStyleClass} city{!cityIndex}-icon-best-q{!block.CB_Quadrant__r.CB_Sequence__c}-b{!block.CB_Sequence__c}" />
+                        </div>
+                        
                         <div class="modal-body">
                             <p class="txt-green">Awesome! Your solution is great!</p>
                             <!-- Solution Description -->

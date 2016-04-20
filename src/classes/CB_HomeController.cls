@@ -8,6 +8,8 @@ public with sharing class CB_HomeController {
      */
     public CB_Game_User__c gameUserInfo {get; private set;}
     
+    public String userRank {get;set;}
+    
     /**
      * Method call on the initial load of the UI to laod Game User. If Game User is not available for 
      * logged in user, a new Game User will be created. 
@@ -15,6 +17,7 @@ public with sharing class CB_HomeController {
     public void init() {
         // Method to get the Game User details for current logged in user. Create a Game User if one does not exist for current user
         this.gameUserInfo = CB_Utils.getCurrentLoggedInGameUser();
+        this.userRank = CB_Utils.getUserRank(UserInfo.getUserId());
     }
     
     /**
@@ -106,6 +109,8 @@ public with sharing class CB_HomeController {
                     
                     // getting state of block 
                     block.state = CB_Utils.getBlockState(story, userBlock, this.gameUserInfo.CB_Budget__c, blockObj.CB_Cost__c);
+                    block.question = story != null ? story.CB_Story_Text__c : '';
+                    
                     quadrant.blocks.add(block);
                 }
                 city.quadrants.add(quadrant);
@@ -133,5 +138,6 @@ public with sharing class CB_HomeController {
         public Integer sequence { get; set; }
         public Integer state { get; set; }
         public String cost { get; set; }
+        public String question { get; set; }
     }
 }

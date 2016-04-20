@@ -56,13 +56,13 @@
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>CB_Reward__c</fullName>
-        <description>Amount is 1.72 for Best Option, 0 for OK Option, and -1.25 for Bad Option</description>
+        <description>Amount is 1.72 for Best Option, 0 for OK Option, and -2.0 for Bad Option</description>
         <externalId>false</externalId>
         <formula>CASE(CB_Score__c,
-     &quot;Bad&quot;, -1 * (CB_Story__r.CB_Block__r.CB_Cost__c * 1.25),
+     &quot;Bad&quot;, -1 * (CB_Story__r.CB_Block__r.CB_Cost__c * 2.0),
      &quot;Best&quot;,CB_Story__r.CB_Block__r.CB_Cost__c * 1.72,
      0 )</formula>
-        <inlineHelpText>Amount is 1.72 for Best Option, 0 for OK Option, and -1.25 for Bad Option</inlineHelpText>
+        <inlineHelpText>Amount is 1.72 for Best Option, 0 for OK Option, and -2.0 for Bad Option</inlineHelpText>
         <label>Reward</label>
         <precision>18</precision>
         <required>false</required>

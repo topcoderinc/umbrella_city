@@ -69,6 +69,17 @@
                         </div>
                     </div>
                 </div>
+                
+                 <div class="container-fluid hide" id="block-question-id" >
+                    <div class="acme-block-tooltip acme-block-right">
+                        <div class="txt">
+                            <div class="title txt-orange" ><span>Block Name | </span>Quadrant Name</div> <!-- Block Name / quadrant Name -->
+                            <p class="txt-black" > Block Story Text</p>
+                        </div>
+                        <!-- .txt -->
+                    </div>
+                 </div>
+                
             </div>
             <!-- .contents -->
         </apex:define>
@@ -96,6 +107,7 @@
                                     sequence: {!block.sequence},
                                     state: {!block.state},
                                     cost: "{!block.cost}",
+                                    question: "{!block.question}"
                                 }
                 </apex:repeat>
                             ]
