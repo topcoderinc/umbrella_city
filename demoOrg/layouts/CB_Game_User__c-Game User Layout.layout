@@ -39,6 +39,10 @@
                 <behavior>Readonly</behavior>
                 <field>CB_Blocks_Completed__c</field>
             </layoutItems>
+            <layoutItems>
+                <behavior>Edit</behavior>
+                <field>CB_Streak__c</field>
+            </layoutItems>
         </layoutColumns>
         <layoutColumns>
             <layoutItems>

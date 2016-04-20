@@ -73,7 +73,7 @@
                     <div class="main">
                         <div class="icons icon-72x72 icon-star-blue-lg">
                             <!-- USER RANK HERE, IF THE RANK IS >= 1000, use the format as shown -->
-                            <span class="txt-number">999+</span>
+                            <span class="txt-number">{!userRank}</span>
                         </div>
                         <!-- .icon-star -->
                         <div class="main-txt">

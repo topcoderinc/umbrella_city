@@ -56,7 +56,7 @@
     <enableStreamingApi>true</enableStreamingApi>
     <fields>
         <fullName>CB_Allocated_Budget__c</fullName>
-        <defaultValue>100000</defaultValue>
+        <defaultValue>50000</defaultValue>
         <description>Budget Allocated to the User</description>
         <externalId>false</externalId>
         <inlineHelpText>Budget Allocated to the User</inlineHelpText>
@@ -112,6 +112,19 @@
         <inlineHelpText>Level Attended by the User, based on Title</inlineHelpText>
         <label>Level</label>
         <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CB_Streak__c</fullName>
+        <description>+/-1 is progressively added to the score, as long as the user keeps winning / loosing. Reset to zero, as soon, the winning or loosing spree breaks</description>
+        <externalId>false</externalId>
+        <inlineHelpText>+/-1 is progressively added to the score, as long as the user keeps winning / loosing. Reset to zero, as soon, the winning or loosing spree breaks</inlineHelpText>
+        <label>Streak</label>
+        <precision>6</precision>
         <required>false</required>
         <scale>0</scale>
         <trackTrending>false</trackTrending>
