@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomTab xmlns="http://soap.sforce.com/2006/04/metadata">
-    <label>Game</label>
+    <label>City Data Loader</label>
     <mobileReady>false</mobileReady>
-    <motif>Custom13: Box</motif>
-    <page>CBGA_Home</page>
+    <motif>Custom28: Cell phone</motif>
+    <page>CBGA_CityDataLoader</page>
 </CustomTab>

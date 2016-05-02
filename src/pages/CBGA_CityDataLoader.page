@@ -1,0 +1,24 @@
+<apex:page controller="CBGA_CityDataLoaderController">
+   <apex:form >
+      <apex:sectionHeader title="Upload city and record data from CSV file"/>
+      <apex:pagemessages />
+      <apex:pageBlock >
+         <center>
+          <apex:inputFile value="{!contentFile}" filename="{!nameFile}" /> <apex:commandButton action="{!readCSVFile}" value="Upload File" id="theButton" style="width:70px;"/>
+          <br/> <br/> <font color="red">
+          	 	<b>Note: Please use the below csv format to upload City(s) and related records.</b> 
+          	 	</font>
+          	 	<div>
+         	 	City,LON,Londan,Test_city01<br/>
+				Quadrant,LON,Q1,Quadrant1 Londan,0<br/>
+				Block,LON,Q1,B1,Block1 Quadrant1 Londan,0,3000.0<br/>
+				Story,LON,Q1,B1,S1,This is Londan city sample test story<br/>
+				Option,LON,Q1,B1,S1,Best,5000.0, Best Solution,Best Solution Description,B1<br/>
+				Option,LON,Q1,B1,S1,Ok,0.0,Its Ok,Ok Solution Description,3<br/>
+				Option,LON,Q1,B1,S1,Bad,1000.0,Its very Bad,Solution Description,2<br/>
+				</div>
+         </center>  
+      </apex:pageBlock>       
+   </apex:form>   
+
+</apex:page>

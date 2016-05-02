@@ -1,0 +1,195 @@
+<apex:page docType="html-5.0" showHeader="false" sidebar="false" standardStylesheets="false" applyHtmlTag="false"
+ applyBodyTag="false" controller="CBGA_PlayController" action="{!init}" >
+ 
+    <link href="{!URLFOR($Resource.CBGA_City_0,'city0-blocks-style.css')}" rel="stylesheet"/>
+    <link href="{!URLFOR($Resource.CBGA_City_1,'city1-blocks-style.css')}" rel="stylesheet"/>
+ 
+    <apex:composition template="CBGA_Template">
+        <apex:define name="contents">
+            <div class="contents play-contents">
+            	<apex:outputPanel rendered="{!NOT(isBlockValidToPlay)}"> 
+            		 <div class="acme-block">
+                        <div class="acme-img pull-left">
+                            <!--  <img src="{!URLFOR($Resource.CBGA_Base, IF(ISNULL(block.CB_Icon_Image_URL__c),'i/acme-img-116x116.jpg',block.CB_Icon_Image_URL__c))}" alt="img"/> -->
+                            <div class="{!blockStyleClass} city{!cityIndex}-icon-best-q{!block.CB_Quadrant__r.CB_Sequence__c}-b{!block.CB_Sequence__c}" />
+                            
+                        </div>
+                        <div class="txt">
+                            <div class="title txt-orange"><span>{!block.CB_Block_Name__c} | </span>{!block.CB_Quadrant__r.CB_Quadrant_Name__c}</div> <!-- Block Name / quadrant Name -->
+                            <p class="txt-black"><apex:pageMessages id="showmsg" /></p>
+                        </div>
+                        <div class="answer-btn">
+                            <div class="arrow pull-left">
+                                <a href="{!URLFOR($Page.CBGA_Home)}" class="btn btn-white btn-back-home">
+                                    <i class="icons icon-48x48 icon-arrow-blue"></i>
+                                </a>
+                            </div>
+                            <!-- .arrow -->
+                            <div class="check pull-right">
+                                <a href="javascript:jsLoadNextBlock();" class="btn btn-green btn-icon-arrow" ><i class="icons icon-48x48 icon-arrow-white"></i></a>
+                            </div>
+                        </div>
+                        
+                    </div>
+            	</apex:outputPanel>
+            	
+            	<apex:outputPanel rendered="{!isBlockValidToPlay}"> 
+                <div class="container-fluid">
+                    <div class="acme-block">
+                        <div class="acme-img pull-left">
+                            <!-- <img src="{!URLFOR($Resource.CBGA_Base, IF(ISNULL(block.CB_Icon_Image_URL__c),'i/acme-img-116x116.jpg',block.CB_Icon_Image_URL__c))}" alt="img"/> -->
+                            <div class="{!blockStyleClass} city{!cityIndex}-icon-best-q{!block.CB_Quadrant__r.CB_Sequence__c}-b{!block.CB_Sequence__c}" />
+                        </div>
+                        <div class="txt">
+                            <div class="title txt-orange"><span>{!block.CB_Block_Name__c} | </span>{!block.CB_Quadrant__r.CB_Quadrant_Name__c}</div> <!-- Block Name / quadrant Name -->
+                            <p class="txt-black">{!story.CB_Story_Text__c}</p>
+                        </div>
+                        <!-- .txt -->
+                    </div>
+                    <!-- .acme-block -->
+                    <div class="answer">
+                    	<div></div>
+                        <div class="row">
+                        	<apex:repeat value="{!story.Solutions_Options__r}" var="option">
+                            <div class="col col-md-4">
+                                <a href="javascript:;" class="{!IF(option.CB_Sequence__c == 0,'irregular-left',(IF(option.CB_Sequence__c == 1,'irregular-center','irregular-right')))} 
+                                	{!IF(option.CB_Score__c == 'Bad','wrong-answer',(IF(option.CB_Score__c == 'Ok','not-bad-answer',(IF(option.CB_Score__c == 'Best','success-answer','')))) )}">
+                                    <span>{!option.CB_Sequence__c}</span>
+                                    <p>{!option.CB_Solution_Text__c}</p>
+                                    <div class="hide solution-opt-id">{!option.id}</div>
+                                </a>
+                            </div>
+                            </apex:repeat>
+                        </div>
+                        <!-- .row -->
+                        <div class="answer-btn">
+                            <div class="arrow pull-left">
+                                <a href="{!URLFOR($Page.CBGA_Home)}" class="btn btn-white btn-back-home">
+                                    <i class="icons icon-48x48 icon-arrow-blue"></i>
+                                </a>
+                            </div>
+                            <!-- .arrow -->
+                            <div class="check pull-right">
+                                <a href="javascript:;" class="btn btn-green btn-submit-answer btn-disbaled" onclick="submitSelectedAnswer();" >
+                                    <i class="icons icon-48x48 icon-check"></i>
+                                </a>
+                            </div>
+                            <!-- .check -->
+                        </div>
+                        <!-- .answer-btn -->
+                        <a href="#" class="oops-btn-modal-window hide" data-toggle="modal" data-target="#oopsModal">oopsModal</a>
+                        <a href="#" class="non-bad-btn-modal-window hide" data-toggle="modal" data-target="#notBadModal">notBadModal</a>
+                        <a href="#" class="success-btn-modal-window hide" data-toggle="modal" data-target="#successModal">successModal</a>
+                    </div>
+                    <!-- .answer -->
+                </div>
+               </apex:outputPanel>
+            </div>
+            <!-- .contents -->
+        </apex:define>
+        <apex:define name="extras">
+            <div class="modal fade" id="oopsModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-red">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Oops!</h4>
+                        </div>
+                         <div class="ans-red-img" >
+                            <div class="{!blockStyleClass} city{!cityIndex}-icon-ok-q{!block.CB_Quadrant__r.CB_Sequence__c}-b{!block.CB_Sequence__c}" />
+                         </div>
+                        <div class="modal-body">
+                            <p class="txt-red">Please select a different solution in order to complete this level. However, you will lose some budget for doing so.</p>
+                            <p class="txt-black">{!oopsModalMessage}<span><apex:outputField value="{!solutionOptionsByScoreType['Bad'].CB_Reward__c}" /></span></p> <!-- Display the Negative Reward Amount as per controller -->
+                        </div>
+                        <div class="modal-footer">
+                        	<!-- on return reload the current page again for game user to play again - data-dismiss="modal" -->
+                            <a href="{!URLFOR($Page.CBGA_Play)+'?blockId='+block.Id}" class="btn btn-green btn-icon-return" ><i class="icons icon-48x48 icon-return"></i></a>
+                        </div>
+                    </div>
+                    <!-- .modal-content -->
+                </div>
+                <!-- .modal-dialog -->
+            </div>
+            <!-- #oops modal window -->
+
+            <div class="modal fade" id="notBadModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-orange">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Not Bad</h4>
+                        </div>
+                        <div class="ans-orange-img" >
+                            <div class="{!blockStyleClass} city{!cityIndex}-icon-ok-q{!block.CB_Quadrant__r.CB_Sequence__c}-b{!block.CB_Sequence__c}" />
+                        </div>
+                        <div class="modal-body">
+                            <p class="txt-orange">Your solution is acceptable, BUT...</p>
+                           
+                            <p class="txt-black">{!notBadModalMessage}</p><!-- Show Message as per logic in controller -->
+                        </div>
+                        <div class="modal-footer">
+                            <a href="{!URLFOR($Page.CBGA_Home)}" class="btn bg-blue btn-icon-home"><i class="icons icon-48x48 icon-home"></i></a>
+                            <a href="{!URLFOR($Page.CBGA_Play)+'?blockId='+block.Id}" class="btn btn-green btn-icon-return" ><i class="icons icon-48x48 icon-return"></i></a>
+                            <!-- 
+                            	If nextBlock is null i.e there no further valid block for game user to play. 
+                            	Clicking on arrow will take him to home page. Else to the next block to play 
+                            -->
+                            <a href="javascript:jsLoadNextBlock();" class="btn btn-green btn-icon-arrow" ><i class="icons icon-48x48 icon-arrow-white"></i></a>
+                            <span>-<apex:outputField value="{!block.CB_Cost__c}" /></span><!-- Block Cost -->
+                        </div>
+                    </div>
+                    <!-- .modal-content -->
+                </div>
+                <!-- .modal-dialog -->
+            </div>
+            <!-- #notBad modal window -->
+
+            <div class="modal fade" id="successModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog modal-green">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title">Success</h4>
+                        </div>
+                         <div class="ans-green-img" >
+                            <div class="{!blockStyleClass} city{!cityIndex}-icon-best-q{!block.CB_Quadrant__r.CB_Sequence__c}-b{!block.CB_Sequence__c}" />
+                        </div>
+                        
+                        <div class="modal-body">
+                            <p class="txt-green">Awesome! Your solution is great!</p>
+                            <!-- Solution Description -->
+                            <p class="txt-gray"><apex:outputField value="{!solutionOptionsByScoreType['Best'].CB_Solution_Selection_Description__c}" /></p>
+                            
+                            <p class="txt-black">{!successModalMessage}<span><apex:outputField value="{!solutionOptionsByScoreType['Best'].CB_Reward__c}" /></span></p><!-- Reward Logic as per controller -->
+                        </div>
+                        <div class="modal-footer">
+                            <a href="{!URLFOR($Page.CBGA_Home)}" class="btn bg-blue btn-icon-home"><i class="icons icon-48x48 icon-home"></i></a>
+                            <!-- 
+                            	If nextBlock is null i.e there no further valid block for game user to play. 
+                            	Clicking on arrow will take him to home page. Else to the next block to play 
+                            -->
+                            <a href="javascript:jsLoadNextBlock();" class="btn btn-green btn-icon-arrow" ><i class="icons icon-48x48 icon-arrow-white"></i></a>
+                        </div>
+                    </div>
+                    <!-- .modal-content -->
+                </div>
+                <!-- .modal-dialog -->
+            </div>
+            <!-- #success modal window -->
+        </apex:define>
+    </apex:composition>
+    
+    <apex:form >
+        <!-- Define the JavaScript function to submit selected answer-->
+        <apex:actionFunction name="jsSubmitAnswer" action="{!saveUserSelectedAnswer}" rerender="availableBudgetId" >
+        	<apex:param name="selectedAnswer" assignTo="{!selectedSolutionOptionId}" value="" />
+        </apex:actionFunction>
+        
+        <apex:actionFunction name="jsLoadNextBlock" action="{!loadNextBlock}" />
+    </apex:form>
+    
+    <script>
+    	function submitSelectedAnswer() {
+    		var selectAnsId = $(".play-contents .answer .row .col a.current .solution-opt-id").html();
+    		jsSubmitAnswer(selectAnsId);
+    	}
+    </script>
+</apex:page>

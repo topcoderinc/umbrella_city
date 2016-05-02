@@ -1,26 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Package xmlns="http://soap.sforce.com/2006/04/metadata">
     <types>
-      <members>CBGA_CityDataLoaderController</members>
-      <members>CBGA_CityDataLoaderTest</members>
-      <members>CBGA_CityDataLoaderUtils</members>
-      <members>CBGA_HomeController</members>
-      <members>CBGA_HomeControllerTest</members>
-      <members>CBGA_LeaderboardController</members>
-      <members>CBGA_LeaderboardControllerTest</members>
-      <members>CBGA_PlayController</members>
-      <members>CBGA_PlayControllerTest</members>
-      <members>CBGA_TestData</members>
-      <members>CBGA_Utils</members>
+        <members>CBGA_CityDataLoaderController</members>
+        <members>CBGA_CityDataLoaderTest</members>
+        <members>CBGA_CityDataLoaderUtils</members>
+        <members>CBGA_HomeController</members>
+        <members>CBGA_HomeControllerTest</members>
+        <members>CBGA_LeaderboardController</members>
+        <members>CBGA_LeaderboardControllerTest</members>
+        <members>CBGA_PlayController</members>
+        <members>CBGA_PlayControllerTest</members>
+        <members>CBGA_TestData</members>
+        <members>CBGA_Utils</members>
         <name>ApexClass</name>
     </types>
     <types>
-      <members>CBGA_CityDataLoader</members>
-      <members>CBGA_Home</members>
-      <members>CBGA_Leaderboard</members>
-      <members>CBGA_Play</members>
-      <members>CBGA_Rules</members>
-      <members>CBGA_Template</members>
+        <members>CBGA_CityDataLoader</members>
+        <members>CBGA_Home</members>
+        <members>CBGA_Leaderboard</members>
+        <members>CBGA_Play</members>
+        <members>CBGA_Rules</members>
+        <members>CBGA_Template</members>
         <name>ApexPage</name>
     </types>
     <types>
@@ -28,35 +28,35 @@
         <name>CustomApplication</name>
     </types>
     <types>
-      <members>CBGA_Block__c</members>
-      <members>CBGA_City__c</members>
-      <members>CBGA_Game_User__c</members>
-      <members>CBGA_Quadrant__c</members>
-      <members>CBGA_Solution_Option__c</members>
-      <members>CBGA_Story_Answer__c</members>
-      <members>CBGA_Story__c</members>
-      <members>CBGA_User_Block__c</members>
+        <members>CBGA_Block__c</members>
+        <members>CBGA_City__c</members>
+        <members>CBGA_Game_User__c</members>
+        <members>CBGA_Quadrant__c</members>
+        <members>CBGA_Solution_Option__c</members>
+        <members>CBGA_Story_Answer__c</members>
+        <members>CBGA_Story__c</members>
+        <members>CBGA_User_Block__c</members>
         <name>CustomObject</name>
     </types>
     <types>
-      <members>CBGA_Block__c</members>
-      <members>CBGA_City__c</members>
-      <members>CBGA_Game_User__c</members>
-      <members>CBGA_Quadrant__c</members>
-      <members>CBGA_Story__c</members>
-      <members>City_Data_Loader</members>
-      <members>Game</members>
+        <members>CBGA_Block__c</members>
+        <members>CBGA_City__c</members>
+        <members>CBGA_Game_User__c</members>
+        <members>CBGA_Quadrant__c</members>
+        <members>CBGA_Story__c</members>
+        <members>City_Data_Loader</members>
+        <members>Game</members>
         <name>CustomTab</name>
     </types>
     <types>
-      <members>CBGA_Block__c-Block Layout</members>
-      <members>CBGA_City__c-City Layout</members>
-      <members>CBGA_Game_User__c-Game User Layout</members>
-      <members>CBGA_Quadrant__c-Quadrant Layout</members>
-      <members>CBGA_Solution_Option__c-Solution Option Layout</members>
-      <members>CBGA_Story_Answer__c-Story Answer Layout</members>
-      <members>CBGA_Story__c-Story Layout</members>
-      <members>CBGA_User_Block__c-User Block Layout</members>
+        <members>CBGA_Block__c-Block Layout</members>
+        <members>CBGA_City__c-City Layout</members>
+        <members>CBGA_Game_User__c-Game User Layout</members>
+        <members>CBGA_Quadrant__c-Quadrant Layout</members>
+        <members>CBGA_Solution_Option__c-Solution Option Layout</members>
+        <members>CBGA_Story_Answer__c-Story Answer Layout</members>
+        <members>CBGA_Story__c-Story Layout</members>
+        <members>CBGA_User_Block__c-User Block Layout</members>
         <name>Layout</name>
     </types>
     <types>
@@ -65,14 +65,14 @@
         <name>Profile</name>
     </types>
     <types>
-      <members>CBGA_Base</members>
-      <members>CBGA_City_0</members>
-      <members>CBGA_City_1</members>
+        <members>CBGA_Base</members>
+        <members>CBGA_City_0</members>
+        <members>CBGA_City_1</members>
         <name>StaticResource</name>
     </types>
     <types>
-      <members>CBGA_Game_User__c</members>
-      <name>Workflow</name>
+        <members>CBGA_Game_User__c</members>
+        <name>Workflow</name>
     </types>
     <version>31.0</version>
 </Package>
