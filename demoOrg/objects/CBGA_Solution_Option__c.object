@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <actionOverrides>
+        <actionName>Accept</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>CancelEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Clone</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Delete</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Edit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Follow</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>List</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>New</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>SaveEdit</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>Tab</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <actionOverrides>
+        <actionName>View</actionName>
+        <type>Default</type>
+    </actionOverrides>
+    <compactLayoutAssignment>SYSTEM</compactLayoutAssignment>
+    <deploymentStatus>Deployed</deploymentStatus>
+    <description>Each story has a set of solutions. These are configurable, means we can configure the datatype of the solution options.</description>
+    <enableActivities>true</enableActivities>
+    <enableBulkApi>true</enableBulkApi>
+    <enableFeeds>false</enableFeeds>
+    <enableHistory>true</enableHistory>
+    <enableReports>true</enableReports>
+    <enableSharing>true</enableSharing>
+    <enableStreamingApi>true</enableStreamingApi>
+    <fields>
+        <fullName>CB_Reward__c</fullName>
+        <description>Amount is 1.72 for Best Option, 0 for OK Option, and -2.0 for Bad Option</description>
+        <externalId>false</externalId>
+        <formula>CASE(CB_Score__c,
+     &quot;Bad&quot;, -1 * (CB_Story__r.CB_Block__r.CB_Cost__c * 2.0),
+     &quot;Best&quot;,CB_Story__r.CB_Block__r.CB_Cost__c * 1.72,
+     0 )</formula>
+        <inlineHelpText>Amount is 1.72 for Best Option, 0 for OK Option, and -2.0 for Bad Option</inlineHelpText>
+        <label>Reward</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>2</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Currency</type>
+    </fields>
+    <fields>
+        <fullName>CB_Score__c</fullName>
+        <description>Score would assigned to each Solution option. Based on the solution option selection and score further actions would be taken.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Score would assigned to each Solution option. Based on the solution option selection and score further actions would be taken.</inlineHelpText>
+        <label>Score</label>
+        <picklist>
+            <picklistValues>
+                <fullName>Bad</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Ok</fullName>
+                <default>false</default>
+            </picklistValues>
+            <picklistValues>
+                <fullName>Best</fullName>
+                <default>false</default>
+            </picklistValues>
+            <sorted>false</sorted>
+        </picklist>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Picklist</type>
+    </fields>
+    <fields>
+        <fullName>CB_Sequence__c</fullName>
+        <description>This field maintains the Sequence in which solution options to be displayed.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field maintains the Sequence in which solution options to be displayed.</inlineHelpText>
+        <label>Sequence</label>
+        <precision>18</precision>
+        <required>false</required>
+        <scale>0</scale>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Number</type>
+        <unique>false</unique>
+    </fields>
+    <fields>
+        <fullName>CB_Solution_Selection_Description__c</fullName>
+        <description>This field contains the description, which would be seen after user selects the option. It will give detailed description of the option, chosen.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field contains the description, which would be seen after user selects the option. It will give detailed description of the option, chosen(With reasoning).</inlineHelpText>
+        <label>Solution Selection Description</label>
+        <length>131072</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>CB_Solution_Text__c</fullName>
+        <description>This field contains the solution option text, which user is going to select from UI.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>This field contains the solution option text, which user is going to select from UI.</inlineHelpText>
+        <label>Solution Text</label>
+        <length>131072</length>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>LongTextArea</type>
+        <visibleLines>3</visibleLines>
+    </fields>
+    <fields>
+        <fullName>CB_Story__c</fullName>
+        <deleteConstraint>SetNull</deleteConstraint>
+        <description>Story to which solution belongs.</description>
+        <externalId>false</externalId>
+        <inlineHelpText>Story to which solution belongs.</inlineHelpText>
+        <label>Story</label>
+        <referenceTo>CBGA_Story__c</referenceTo>
+        <relationshipLabel>Solutions Options</relationshipLabel>
+        <relationshipName>Solutions_Options</relationshipName>
+        <required>false</required>
+        <trackHistory>false</trackHistory>
+        <trackTrending>false</trackTrending>
+        <type>Lookup</type>
+    </fields>
+    <label>Solution Option</label>
+    <nameField>
+        <displayFormat>SO-{0000}</displayFormat>
+        <label>Solution Options Name</label>
+        <trackHistory>false</trackHistory>
+        <type>AutoNumber</type>
+    </nameField>
+    <pluralLabel>Solution Options</pluralLabel>
+    <searchLayouts/>
+    <sharingModel>ReadWrite</sharingModel>
+</CustomObject>
