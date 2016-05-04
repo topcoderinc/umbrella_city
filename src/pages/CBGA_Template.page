@@ -14,7 +14,13 @@
         <link href="{!URLFOR($Resource.CBGA_Base,'lib/bootstrap/css/bootstrap-theme.min.css')}" rel="stylesheet"/>
         <link href="{!URLFOR($Resource.CBGA_Base,'css/font.css')}" rel="stylesheet"/>
         <link href="{!URLFOR($Resource.CBGA_Base,'css/screen.css')}" rel="stylesheet"/>
-
+        
+        <style>
+          .budget-red span{
+            color:#fe5c5c !important;
+          }
+        </style>
+        
     </head>
     <body>
     <div class="wrapper">
@@ -23,14 +29,14 @@
                 <div class="logo"><a href="{!URLFOR($Page.CBGA_Home)}"><img src="{!URLFOR($Resource.CBGA_Base,'i/logo.png')}" alt="logo"/></a></div>
                 <nav class="nav">
                     <ul>
-                    	<li>
-		                    <div class="main play" id="blockCostDiv" >
-		                        <div class="cost-display hide">
-		                        	<i class="icons icon-48x48 icon-leaderboard"></i>
-		                            <span class="txt txt-purple block-cost-txt" ></span> <!-- Block Cost -->
-		                        </div>
-		                    </div>
-                    	</li>
+                        <li>
+                            <div class="main play" id="blockCostDiv" >
+                                <div class="cost-display hide">
+                                    <i class="icons icon-48x48 icon-leaderboard"></i>
+                                    <span class="txt txt-purple block-cost-txt" ></span> <!-- Block Cost -->
+                                </div>
+                            </div>
+                        </li>
                         <li class="{!IF($CurrentPage.Name == 'CBGA_Home'||$CurrentPage.Name == 'CBGA_Play','current','')}">
                             <a href="{!URLFOR($Page.CBGA_Home)}" class="play">
                                 <i class="icons icon-48x48 icon-play"></i>
@@ -113,8 +119,11 @@
                         <!-- .icon-brush icon-level-1 -->
                         <div class="main-txt right">
                             <span class="title">BUDGET</span> 
-                            <span><apex:outputField value="{!gameUserInfo.CB_Budget__c}" id="availableBudgetId" /></span> <!-- Available Budget -->
+                            <apex:outputPanel styleclass="{!IF(gameUserInfo.CB_Budget__c < 0,'budget-red','')}">
+                                <apex:outputField value="{!gameUserInfo.CB_Budget__c}" styleClass="txt-red" id="availableBudgetId" />
+                            </apex:outputPanel> <!-- Available Budget -->
                         </div>
+                        
                         <!-- .main-txt -->
                     </div>
                     <!-- .main -->
@@ -130,19 +139,7 @@
 
             <div class="copyright txt-black">Copyright ? 2016 UMBRELLA All rights reserved.</div>
             <div class="link">
-                <ul>
-                    <li>
-                        <a href="javascript:;" class="txt-blue">Privacy Statement</a>
-                        <span>|</span>
-                    </li>
-                    <li>
-                        <a href="javascript:;" class="txt-blue">Security Statement</a>
-                        <span>|</span>
-                    </li>
-                    <li>
-                        <a href="javascript:;" class="txt-blue">Terms of Use</a>
-                    </li>
-                </ul>
+               <!-- Right Side Items -->
             </div>
             <!-- .link -->
         </div>

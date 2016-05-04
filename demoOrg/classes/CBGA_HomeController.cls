@@ -91,14 +91,14 @@ public with sharing class CBGA_HomeController {
             for (CBGA_Quadrant__c quad: quadrantListByCityIdMap.get(c.Id)) {
                 CB_Quadrant quadrant = new CB_Quadrant();
                 quadrant.name = quad.CB_Quadrant_Name__c;
-                quadrant.sequence = (Integer)quad.CB_Sequence__c;
+                quadrant.sequence = (Integer)quad.CB_Sequence__c - 1;
                 quadrant.blocks = new List<CB_Blocks>();
                 
                 for(CBGA_Block__c blockObj:quad.Block__r) {
                     CB_Blocks block = new CB_Blocks();
                     block.id = blockObj.Id;
                     block.name = blockObj.CB_Block_Name__c;
-                    block.sequence = (Integer)blockObj.CB_Sequence__c;
+                    block.sequence = (Integer)blockObj.CB_Sequence__c - 1;
                     
                     // Getting currency symbol
                     currencySymbol = String.isBlank(currencySymbol) ? CBGA_Utils.getCurrencySymbol(blockObj) : currencySymbol;

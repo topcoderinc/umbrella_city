@@ -128,4 +128,12 @@
     <pluralLabel>Quadrants</pluralLabel>
     <searchLayouts/>
     <sharingModel>ControlledByParent</sharingModel>
+    <validationRules>
+        <fullName>Sequence_Number_Must_be_Greater_than_0</fullName>
+        <active>true</active>
+        <description>Sequence Number Must be Greater than 0</description>
+        <errorConditionFormula>CB_Sequence__c &lt;= 0</errorConditionFormula>
+        <errorDisplayField>CB_Sequence__c</errorDisplayField>
+        <errorMessage>Sequence should be more than 0</errorMessage>
+    </validationRules>
 </CustomObject>
