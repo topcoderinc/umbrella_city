@@ -9,7 +9,7 @@ private class CBGA_CityDataLoaderTest {
 	static string getCSVContentAsString() {
 		String csvAsStringForCity = 'City,LON,Londan,Test_city01\n'+
 						'Quadrant,LON,Q2,Quadrant2 Londan,1\n'+
-						'Block,LON,Q2,B1,Block1 Quadrant1 Londan,0,3500.0\n'+
+						'Block,LON,Q2,B1,Block1 Quadrant1 Londan,1,3500.0\n'+
 						'Story,LON,Q2,B1,S1,This is Londan city sample test story\n'+
 						'Option,LON,Q2,B1,S1,Best,5000.0, Best Solution,Best Description,2\n'+
 						'Option,LON,Q2,B1,S1,Ok,0.0,Its Ok,Ok Description,1\n'+

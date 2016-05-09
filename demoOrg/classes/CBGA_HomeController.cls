@@ -9,6 +9,12 @@ public with sharing class CBGA_HomeController {
     public CBGA_Game_User__c gameUserInfo {get; private set;}
     
     public String userRank {get;set;}
+    public Boolean showIntroPopup {get;set;}
+    
+    public CBGA_HomeController(){
+        this.showIntroPopup = !CBGA_Utils.getIsGameUserExists();
+    }
+    
     
     /**
      * Method call on the initial load of the UI to laod Game User. If Game User is not available for 

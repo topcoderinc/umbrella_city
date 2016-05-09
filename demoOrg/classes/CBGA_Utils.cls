@@ -63,6 +63,16 @@ public with sharing class CBGA_Utils {
     }
         
 
+     /**
+     * Check if a user record exists for current user
+     */
+    public static Boolean getIsGameUserExists() {
+      List<CBGA_Game_User__c> gameUsers = [Select Name From CBGA_Game_User__c where CB_User__c =: UserInfo.getUserId()];
+      if(gameUsers.size() == 0) return false;
+      
+      return true;  
+    }    
+
     /**
      * Method to get the Game User details for current logged in user. Creating a Game User if one does not exist for current user.
      */

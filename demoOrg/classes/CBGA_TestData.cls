@@ -104,20 +104,20 @@ public with sharing class CBGA_TestData {
         CBGA_City__c city2 = createCity(CITY_NAME_2);
         insert new List<CBGA_City__c>{city1, city2};
         
-        CBGA_Quadrant__c quadrant11 = createQuadrant('Quadrant1 in City1', city1.id, 0);
-        CBGA_Quadrant__c quadrant12 = createQuadrant('Quadrant2 in City1', city1.id, 1);
-        CBGA_Quadrant__c quadrant21 = createQuadrant('Quadrant1 in City2', city2.id, 0);
+        CBGA_Quadrant__c quadrant11 = createQuadrant('Quadrant1 in City1', city1.id, 1);
+        CBGA_Quadrant__c quadrant12 = createQuadrant('Quadrant2 in City1', city1.id, 2);
+        CBGA_Quadrant__c quadrant21 = createQuadrant('Quadrant1 in City2', city2.id, 1);
         insert new List<CBGA_Quadrant__c>{quadrant11, quadrant12, quadrant21};
         
-        CBGA_Block__c block1 = createBlock('Block1-C1-Q1', quadrant11.Id, 0, 5000);
-        CBGA_Block__c block2 = createBlock('Block2-C1-Q1', quadrant11.Id, 1, 3000);
-        CBGA_Block__c block3 = createBlock(BLOCK_3_C1Q1_NAME, quadrant11.Id, 2, 4000);
-        CBGA_Block__c block4 = createBlock(BLOCK_4_C1Q1_NAME, quadrant11.Id, 3, 6000);
+        CBGA_Block__c block1 = createBlock('Block1-C1-Q1', quadrant11.Id, 1, 5000);
+        CBGA_Block__c block2 = createBlock('Block2-C1-Q1', quadrant11.Id, 2, 3000);
+        CBGA_Block__c block3 = createBlock(BLOCK_3_C1Q1_NAME, quadrant11.Id, 3, 4000);
+        CBGA_Block__c block4 = createBlock(BLOCK_4_C1Q1_NAME, quadrant11.Id, 4, 6000);
         
-        CBGA_Block__c block5 = createBlock(BLOCK_1_C1Q2_NAME, quadrant12.Id, 0, 5000);
+        CBGA_Block__c block5 = createBlock(BLOCK_1_C1Q2_NAME, quadrant12.Id, 1, 5000);
         
-        CBGA_Block__c block6 = createBlock('Block1-C2-Q1', quadrant21.Id, 0, 8000); // No question for this block
-        CBGA_Block__c block7 = createBlock(BLOCK_2_C2Q1_NAME, quadrant21.Id, 1, 8000);
+        CBGA_Block__c block6 = createBlock('Block1-C2-Q1', quadrant21.Id, 1, 8000); // No question for this block
+        CBGA_Block__c block7 = createBlock(BLOCK_2_C2Q1_NAME, quadrant21.Id, 2, 8000);
         insert new List<CBGA_Block__c>{block1, block2, block3, block4, block5, block6, block7}; 
         
         
@@ -134,9 +134,9 @@ public with sharing class CBGA_TestData {
         // Creating solution for each 6 stories. There will 3 solution for each story. So total 18 solution options will be created. 
         for(Integer i=0; i < 6; i++) {
             CBGA_Story__c story = storyList.get(i);
-            solutions.add(createSolutionOptions('It was very good','It was very good Description', story.Id, 15000, CBGA_Utils.SOLUTION_OPTION_BEST, 0));
-            solutions.add(createSolutionOptions('It was very Bad','It was very bad Description', story.Id, -5000, CBGA_Utils.SOLUTION_OPTION_BAD, 1));
-            solutions.add(createSolutionOptions('It was Ok','It was very ok Description',story.Id, 0, CBGA_Utils.SOLUTION_OPTION_OK, 2));
+            solutions.add(createSolutionOptions('It was very good','It was very good Description', story.Id, 15000, CBGA_Utils.SOLUTION_OPTION_BEST, 1));
+            solutions.add(createSolutionOptions('It was very Bad','It was very bad Description', story.Id, -5000, CBGA_Utils.SOLUTION_OPTION_BAD, 2));
+            solutions.add(createSolutionOptions('It was Ok','It was very ok Description',story.Id, 0, CBGA_Utils.SOLUTION_OPTION_OK, 3));
         }
         insert solutions;
         

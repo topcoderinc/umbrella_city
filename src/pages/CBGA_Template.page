@@ -148,6 +148,38 @@
     <!-- .footer -->
 
     <apex:insert name="extras"/>
+    
+    <apex:outputPanel layout="block" rendered="{!showIntroPopup}">
+      <div class="modal fade" id="introPopup"  tabindex="-1" role="dialog">
+          <div class="modal-dialog modal-green">
+              <div class="modal-content">
+                  <div class="modal-header">
+                      <h4 class="modal-title">Welcome</h4>
+                  </div>
+                  <div class="ans-green-img" >
+                      <img style="padding-left: 14px;" src="{!URLFOR($Resource.CBGA_Base,'i/logo.png')}" alt="img" class="img-responsive"/>
+                </div>
+
+                <div class="modal-body">
+                    <p class="txt-gray" style="height:200px">
+                        Welcome to Lillytropolis! <br/>
+                        You are a city architect who has been employed to modernise the city, we've given you a starting budget, so spend this wisely! Click on grey buildings to answer questions and refurbish your city to a future state. The closer your choices are to the overall strategy, the more money you will earn. However, be warned that poor choices can also have consequences!
+                        <br/>
+                        <br/>
+                        The detail rules are <a href="{!URLFOR($Page.CBGA_Rules)}">here</a>
+                     </p>
+
+                   
+                </div>
+                <div class="modal-footer">
+                    <a style="left:225px;" href="{!URLFOR($Page.CBGA_Home)}" class="btn bg-blue btn-icon-home"><i class="icons icon-48x48 icon-home"></i></a>
+                </div>
+            </div>
+            <!-- .modal-content -->
+        </div>
+        <!-- .modal-dialog -->
+    </div>
+    </apex:outputPanel>
 
     <!-- JS -->
     <script src="{!URLFOR($Resource.CBGA_Base,'js/jquery-2.1.4.min.js')}"></script>
