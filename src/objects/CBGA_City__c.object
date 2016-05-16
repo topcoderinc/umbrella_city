@@ -83,5 +83,5 @@
     </nameField>
     <pluralLabel>Cities</pluralLabel>
     <searchLayouts/>
-    <sharingModel>ReadWrite</sharingModel>
+    <sharingModel>Private</sharingModel>
 </CustomObject>

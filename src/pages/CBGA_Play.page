@@ -6,9 +6,7 @@
             <div class="contents play-contents">
                 <apex:outputPanel rendered="{!NOT(isBlockValidToPlay)}">
                     <div class="acme-block">
-                        <div class="acme-img pull-left">
-                            <img src="{!URLFOR($Resource['CBGA_City_'+cityIndex], 'blocks/'+TEXT((block.CB_Quadrant__r.CB_Sequence__c-1)*4+block.CB_Sequence__c) + blockState+'.png')}" alt="img" class="img-responsive"/>
-                        </div>
+                        <div class="acme-img pull-left" style="background: url('{!URLFOR($Resource['CBGA_City_'+cityIndex], 'blocks/'+TEXT((block.CB_Quadrant__r.CB_Sequence__c-1)*4+block.CB_Sequence__c) + blockState+'.png')}') center center no-repeat; background-size: contain;"></div>
                         <div class="txt">
                             <div class="title txt-orange"><span>{!block.CB_Block_Name__c} | </span>{!block.CB_Quadrant__r.CB_Quadrant_Name__c}</div> <!-- Block Name / quadrant Name -->
                             <p class="txt-black"><apex:pageMessages id="showmsg" /></p>
@@ -31,12 +29,11 @@
                 <apex:outputPanel rendered="{!isBlockValidToPlay}">
                     <div class="container-fluid">
                         <div class="acme-block">
-                            <div class="acme-img pull-left">
-                                <img src="{!URLFOR($Resource['CBGA_City_'+cityIndex], 'blocks/'+TEXT((block.CB_Quadrant__r.CB_Sequence__c-1)*4+block.CB_Sequence__c)+ blockState + '.png')}" alt="img" class="img-responsive"/>
-                            </div>
+                            <div class="acme-img pull-left" style="background: url('{!URLFOR($Resource['CBGA_City_'+cityIndex], 'blocks/'+TEXT((block.CB_Quadrant__r.CB_Sequence__c-1)*4+block.CB_Sequence__c)+ blockState + '.png')}') center center no-repeat; background-size: contain;"></div>
                             <div class="txt">
                                 <div class="title txt-orange"><span>{!block.CB_Block_Name__c} | </span>{!block.CB_Quadrant__r.CB_Quadrant_Name__c}</div> <!-- Block Name / quadrant Name -->
                                 <p class="txt-black">{!story.CB_Story_Text__c}</p>
+                                <div class="text-right"><i class="glyphicon glyphicon-menu-up"></i><i class="glyphicon glyphicon-menu-down"></i></div>
                             </div>
                             <!-- .txt -->
                         </div>
@@ -51,6 +48,7 @@
                                             <span>{!option.CB_Sequence__c}</span>
                                             <p>{!option.CB_Solution_Text__c}</p>
                                             <div class="hide solution-opt-id">{!option.id}</div>
+                                            <div class="text-right"><i class="glyphicon glyphicon-menu-up"></i><i class="glyphicon glyphicon-menu-down"></i></div>
                                         </a>
                                     </div>
                                 </apex:repeat>
@@ -88,9 +86,7 @@
                         <div class="modal-header">
                             <h4 class="modal-title">Oops!</h4>
                         </div>
-                        <div class="ans-red-img" >
-                            <img src="{!URLFOR($Resource['CBGA_City_'+cityIndex], 'blocks/'+TEXT((block.CB_Quadrant__r.CB_Sequence__c-1)*4+block.CB_Sequence__c)+'.png')}" alt="img" class="img-responsive"/>
-                        </div>
+                        <div class="ans-red-img" style="background: url('{!URLFOR($Resource['CBGA_City_'+cityIndex], 'blocks/'+TEXT((block.CB_Quadrant__r.CB_Sequence__c-1)*4+block.CB_Sequence__c)+'.png')}') center center no-repeat; background-size: contain;"></div>
                         <div class="modal-body">
                             <p class="txt-red">Please select a different solution in order to complete this level. However, you will lose some budget for doing so.</p>
                             <p class="txt-black">{!oopsModalMessage}<span><apex:outputField value="{!solutionOptionsByScoreType['Bad'].CB_Reward__c}" /></span></p> <!-- Display the Negative Reward Amount as per controller -->
@@ -112,9 +108,7 @@
                         <div class="modal-header">
                             <h4 class="modal-title">Not Bad</h4>
                         </div>
-                        <div class="ans-orange-img" >
-                            <img src="{!URLFOR($Resource['CBGA_City_'+cityIndex], 'blocks/'+TEXT((block.CB_Quadrant__r.CB_Sequence__c-1)*4+block.CB_Sequence__c)+'_passed.png')}" alt="img" class="img-responsive"/>
-                        </div>
+                        <div class="ans-orange-img" style="background: url('{!URLFOR($Resource['CBGA_City_'+cityIndex], 'blocks/'+TEXT((block.CB_Quadrant__r.CB_Sequence__c-1)*4+block.CB_Sequence__c)+'_passed.png')}') center center no-repeat; background-size: contain;"></div>
                         <div class="modal-body">
                             <p class="txt-orange">Your solution is acceptable, BUT...</p>
 
@@ -128,7 +122,7 @@
                                 Clicking on arrow will take him to home page. Else to the next block to play
                             -->
                             <a href="javascript:jsLoadNextBlock();" class="btn btn-green btn-icon-arrow" ><i class="icons icon-48x48 icon-arrow-white"></i></a>
-                            <span>-<apex:outputField value="{!block.CB_Cost__c}" /></span><!-- Block Cost -->
+                            <div class="cost"><span>-<apex:outputField value="{!block.CB_Cost__c}" /></span></div><!-- Block Cost -->
                         </div>
                     </div>
                     <!-- .modal-content -->
@@ -143,9 +137,7 @@
                         <div class="modal-header">
                             <h4 class="modal-title">Success</h4>
                         </div>
-                        <div class="ans-green-img" >
-                            <img src="{!URLFOR($Resource['CBGA_City_'+cityIndex], 'blocks/'+TEXT((block.CB_Quadrant__r.CB_Sequence__c-1)*4+block.CB_Sequence__c)+'_completed.png')}" alt="img" class="img-responsive"/>
-                        </div>
+                        <div class="ans-green-img" style="background: url('{!URLFOR($Resource['CBGA_City_'+cityIndex], 'blocks/'+TEXT((block.CB_Quadrant__r.CB_Sequence__c-1)*4+block.CB_Sequence__c)+'_completed.png')}') center center no-repeat; background-size: contain;"></div>
 
                         <div class="modal-body">
                             <p class="txt-green">Awesome! Your solution is great!</p>
@@ -185,5 +177,51 @@
             var selectAnsId = $(".play-contents .answer .row .col a.current .solution-opt-id").html();
             jsSubmitAnswer(selectAnsId);
         }
+
+        $(document).ready(function () {
+            var speed = 25, scroll = 5, scrolling;
+
+            $('.acme-block .txt, .answer .row .col').each(function (i,v) {
+                var ele = $(v).find('p');
+
+                $(v).find('.glyphicon-menu-up').mouseenter(function() {
+                    // Scroll the element up
+                    scrolling = window.setInterval(function() {
+                        ele.scrollTop( ele.scrollTop() - scroll );
+                    }, speed);
+                });
+
+                $(v).find('.glyphicon-menu-down').mouseenter(function() {
+                    // Scroll the element down
+                    scrolling = window.setInterval(function() {
+                        ele.scrollTop( ele.scrollTop() + scroll );
+                    }, speed);
+                });
+
+                $(v).find('.glyphicon-menu-up, .glyphicon-menu-down').bind({
+                    click: function(e) {
+                        // Prevent the default click action
+                        e.preventDefault();
+                    },
+                    mouseleave: function() {
+                        if (scrolling) {
+                            window.clearInterval(scrolling);
+                            scrolling = false;
+                        }
+                    }
+                }).toggle(ele[0].clientHeight!=ele[0].scrollHeight);
+            });
+
+            $(window).resize(function () {
+                toggleScroll();
+            });
+
+            function toggleScroll() {
+                $('.acme-block .txt, .answer .row .col').each(function (i,v) {
+                    var ele = $(v).find('p');
+                    $(v).find('.glyphicon-menu-up, .glyphicon-menu-down').toggle(ele[0].clientHeight!=ele[0].scrollHeight);
+                });
+            }
+        });
     </script>
 </apex:page>
