@@ -60,9 +60,9 @@
         <name>Layout</name>
     </types>
     <types>
-        <members>Admin</members>
-        <members>Standard</members>
-        <name>Profile</name>
+        <members>CBGA_Admin</members>
+        <members>CBGA_User</members>
+        <name>PermissionSet</name>
     </types>
     <types>
         <members>CBGA_Base</members>
